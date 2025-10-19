@@ -1,0 +1,11 @@
+services:
+  wolf-wallet-app:
+    build: ./app
+    image: wolfgangkp/wolf-wallet:dev
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./app:/app # mount path inside container should match WORKDIR in Dockerfile
+    ports:
+      - "5001:5001"
+    command: sh -c "npm i && npm run dev"

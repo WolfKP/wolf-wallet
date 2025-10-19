@@ -1,0 +1,5 @@
+services:
+  wolf-wallet-app:
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped

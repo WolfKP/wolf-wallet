@@ -1,0 +1,11 @@
+services:
+  wolf-wallet-app:
+    image: wolfgangkp/wolf-wallet:latest
+    expose:
+      - "5000"
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    external: true
