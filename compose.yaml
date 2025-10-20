@@ -1,11 +1,32 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Named volume
+    expose:
+      - "5432"
+    networks:
+      - wolf-wallet-net
+
   wolf-wallet-app:
     image: wolfgangkp/wolf-wallet:latest
+    env_file:
+      - .env
     expose:
       - "5000"
+    depends_on:
+      - postgres
     networks:
-      - webnet
+      - external
+      - wolf-wallet-net
+
+volumes:
+  postgres_data:
 
 networks:
-  webnet:
+  external:
     external: true
+  wolf-wallet-net:
+    internal: true

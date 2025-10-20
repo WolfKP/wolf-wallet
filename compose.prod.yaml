@@ -1,5 +1,8 @@
 services:
+  postgres:
+    container_name: wolf-wallet-postgres
+    restart: unless-stopped
+
   wolf-wallet-app:
-    environment:
-      - NODE_ENV=production
+    container_name: "wolf-wallet-app"
     restart: unless-stopped
