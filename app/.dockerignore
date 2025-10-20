@@ -7,3 +7,7 @@ node_modules
 
 # Docker
 Dockerfile
+
+# Environment & Secrets
+.env
+*.log
