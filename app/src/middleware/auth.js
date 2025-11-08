@@ -52,11 +52,11 @@ const authenticateToken = async (req, res, next) => {
  *
  * This is called after successful login or registration to create a JWT.
  *
- * @param {*} userID
+ * @param {*} userId
  */
-const generateToken = (userID) => {
+const generateToken = (userId) => {
   return jwt.sign(
-    { userID },
+    { userId },
     JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN || '7d'}
    );
