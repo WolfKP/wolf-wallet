@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 /**
  * Middleware to verify JWT
  *
- * The token is extracted from the Authorization header and checked. It's corresponding user is pulled form the database
+ * The token is extracted from the Authorization header and checked. Its corresponding user is pulled form the database
  * and attached to the request for use by the controller.
  *
  * @param {*} req
