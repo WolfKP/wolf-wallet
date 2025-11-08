@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const { User } = require('../models'); // Knows to look for index.js
+const jwt = require("jsonwebtoken");
+const { User } = require("../models"); // Knows to look for index.js
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -14,9 +14,35 @@ const JWT_SECRET = process.env.JWT_SECRET;
  * @param {*} next
  */
 const authenticateToken = async (req, res, next) => {
-  try {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1]; // Get part after "Bearer "
 
-  } catch (error) {
-
+  // With no token, the request is unauthorized
+  if (!token) {
+    return res.sendStatus(401);
   }
+
+  let payload;
+  try {
+    payload = jwt.verify(token, JWT_SECRET);
+  } catch (error) {
+    // If the token fails to verify, the request is unauthorized
+    return res.sendStatus(401);
+  }
+
+  // Get the user from the database, using the decoded id
+  let user;
+  try {
+    user = await User.findByPk(payload.userId);
+  } catch (error) {
+    return res.sendStatus(500);
+  }
+
+  if (!user) {
+    return res.sendStatus(401);
+  }
+
+  req.user = user;
+
+  next();
 };
