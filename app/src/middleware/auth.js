@@ -46,3 +46,23 @@ const authenticateToken = async (req, res, next) => {
 
   next();
 };
+
+/**
+ * Helper function to generate JWT
+ *
+ * This is called after successful login or registration to create a JWT.
+ *
+ * @param {*} userID
+ */
+const generateToken = (userID) => {
+  return jwt.sign(
+    { userID },
+    JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRES_IN || '7d'}
+   );
+};
+
+module.exports = {
+  authenticateToken,
+  generateToken
+};
