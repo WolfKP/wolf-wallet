@@ -1,11 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+
 const sequelize = require("./src/config/database");
 
+// Import models
+const { User, Wallet, Transaction } = require("./src/models");
+
 // Import routes
-const walletRoutes = require("./src/routes/walletRoutes");
-const transactionRoutes = require("./src/routes/transactionRoutes");
+const authRoutes = require("./src/routes/auth");
+const walletRoutes = require("./src/routes/wallet");
+const transactionRoutes = require("./src/routes/transaction");
 
 const app = express();
 const APP_PORT = process.env.APP_PORT;
