@@ -14,15 +14,15 @@ const Transaction = sequelize.define(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: "Users",
+        model: "users",
         key: "id",
       },
     },
-    wallet_address_id: {
+    wallet_id: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: "WalletAddresses",
+        model: "wallets",
         key: "id",
       },
     },
@@ -53,6 +53,7 @@ const Transaction = sequelize.define(
     },
   },
   {
+    tableName: "transactions",
     underscored: true,
   }
 );

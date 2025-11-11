@@ -36,8 +36,9 @@ const User = sequelize.define(
   },
   {
     // Model-level configs
+    tableName: 'users',
     underscored: true, // Use snake_case for database columns
-    hooks: {
+    hooks: { // Automatically run before or after certain model actions
       beforeCreate: async (user) => {
         if (user.password_hash) {
           const salt = await bcrypt.genSalt(10); // Generate salt with cost factor of 10
