@@ -1,13 +1,16 @@
-# Node
-node_modules
-
-# Git
-.git
-.gitignore
-
 # Docker
 Dockerfile
 
 # Environment & Secrets
 .env
 *.log
+
+# Git
+.git
+.gitignore
+
+# Node
+node_modules
+
+# VS Code
+.vscode/
