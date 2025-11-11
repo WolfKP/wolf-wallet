@@ -6,7 +6,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data # Named volume
     expose:
-      - "5432"
+      - "5432" # Documents the port only used internally (Postgres is listening)
     networks:
       - wolf-wallet-net
 

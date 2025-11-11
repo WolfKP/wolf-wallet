@@ -1,6 +1,9 @@
 services:
   postgres:
     container_name: wolf-wallet-postgres-dev
+    ports:
+    - "5432:5432" # Expose port to host, overriding internal network restrictions
+    expose:
   wolf-wallet-app:
     build: ./app
     image: wolfgangkp/wolf-wallet:dev
@@ -11,4 +14,9 @@ services:
       - ./app:/app # Bind mount (should match WORKDIR in Dockerfile)
     ports:
       - "5001:5000"
+      - "9229:9229" # For debugging
     command: sh -c "npm i && npm run dev"
+
+networks:
+  wolf-wallet-net:
+    internal: false
