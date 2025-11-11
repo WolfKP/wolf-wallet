@@ -36,16 +36,16 @@ app.get("/api/health", (req, res) => {
 async function start() {
   try {
     await sequelize.authenticate(); // Test database connection
-    console.log('Database connected...');
+    console.log("Database connected...");
 
     await sequelize.sync(); // Create tables if they don't exist
-    console.log('All models were synchronized successfully...');
+    console.log("All models were synchronized successfully...");
 
-    app.listen(APP_PORT, '0.0.0.0', () => {
+    app.listen(APP_PORT, "0.0.0.0", () => {
       console.log(`Server running on port ${APP_PORT}`);
     });
   } catch (error) {
-    console.error('Failed to start server: ', error);
+    console.error("Failed to start server: ", error);
     process.exit(1);
   }
 }
