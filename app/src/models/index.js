@@ -1,13 +1,13 @@
 const User = require("./User");
-const WalletAddress = require("./WalletAddress");
+const Wallet = require("./Wallet");
 const Transaction = require("./Transaction");
 
 // Define relationships
-User.hasMany(WalletAddress, {
+User.hasMany(Wallet, {
   foreignKey: "user_id",
   as: "wallets",
 });
-WalletAddress.belongsTo(User, { foreignKey: "user_id" });
+Wallet.belongsTo(User, { foreignKey: "user_id" });
 
 User.hasMany(Transaction, {
   foreignKey: "user_id",
@@ -15,14 +15,14 @@ User.hasMany(Transaction, {
 });
 Transaction.belongsTo(User, { foreignKey: "user_id" });
 
-WalletAddress.hasMany(Transaction, {
+Wallet.hasMany(Transaction, {
   foreignKey: "wallet_address_id",
   as: "transactions",
 });
-Transaction.belongsTo(WalletAddress, { foreignKey: "wallet_address_id" });
+Transaction.belongsTo(Wallet, { foreignKey: "wallet_address_id" });
 
 module.exports = {
   User,
-  WalletAddress,
+  Wallet,
   Transaction,
 };
