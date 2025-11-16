@@ -2,12 +2,17 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
+const txRoutes = require("./src/routes/tx");
+
 const app = express();
 const APP_PORT = process.env.APP_PORT;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Routes
+app.use("/tx", txRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {
